@@ -721,15 +721,22 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] md:h-screen flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, scale: 1.1 }}
+            initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
-            className="absolute inset-0 z-0"
+            transition={{ duration: 1.2 }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={(e, info) => {
+              if (info.offset.x < -50) setCurrentSlide((s) => (s + 1) % SLIDER_IMAGES.length)
+              else if (info.offset.x > 50) setCurrentSlide((s) => (s - 1 + SLIDER_IMAGES.length) % SLIDER_IMAGES.length)
+            }}
+            whileTap={{ cursor: 'grabbing' }}
+            className="absolute inset-0 z-0 touch-pan-y"
           >
             <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-[#fdf8f3] z-10" />
             <Image src={SLIDER_IMAGES[currentSlide].src} alt="Temple" fill className="object-cover" priority />
@@ -743,10 +750,22 @@ export default function Home() {
             <p className="text-lg md:text-2xl max-w-3xl mx-auto font-light opacity-90 leading-relaxed tracking-wide">
               Where devotion meets divinity. Welcome to the sacred abode of Ragampeta Swamy.
             </p>
-            <div className="mt-12 flex flex-wrap justify-center gap-6">
-              <a href="#donate" className="px-10 py-4 bg-primary text-white rounded-full font-bold shadow-2xl hover:bg-accent transition-all hover:-translate-y-1">Darshan & Seva</a>
-              <a href="#gallery" className="px-10 py-4 bg-white/10 backdrop-blur-lg border border-white/30 text-white rounded-full font-bold hover:bg-white/20 transition-all">Explore Gallery</a>
+            <div className="mt-12 flex flex-wrap justify-center gap-4">
+              <a href="#donate" className="px-6 py-3 sm:px-10 sm:py-4 bg-primary text-white rounded-full font-bold shadow-2xl hover:bg-accent transition-all hover:-translate-y-1">Darshan & Seva</a>
+              <a href="#gallery" className="px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-lg border border-white/30 text-white rounded-full font-bold hover:bg-white/20 transition-all">Explore Gallery</a>
             </div>
+
+            {/* Slider Dots (mobile-friendly) */}
+            <div className="mt-4 flex items-center justify-center gap-3">
+              {SLIDER_IMAGES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`w-2 h-2 rounded-full transition-all ${idx === currentSlide ? 'bg-white' : 'bg-white/40'}`}
+                />
+              ))}
+            </div> 
           </motion.div>
         </div>
       </section>
@@ -763,9 +782,9 @@ export default function Home() {
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="relative group">
             <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] -rotate-2 group-hover:rotate-0 transition-transform duration-500" />
-            <div className="relative h-[600px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+            <div className="relative h-72 sm:h-96 md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
               <Image src="/diety.jpg" alt="Deity" fill className="object-cover" />
-            </div>
+            </div> 
           </div>
           <div className="space-y-8">
             <span className="text-primary font-bold tracking-[0.3em] uppercase text-sm">Divine Heritage</span>
@@ -800,7 +819,7 @@ export default function Home() {
           </motion.div>
           <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" initial="hidden" whileInView="visible" variants={staggerContainer}>
             {GALLERY_IMAGES.map((img, i) => (
-              <motion.div key={i} variants={fadeUp} whileHover={{ y: -10 }} className="relative h-80 rounded-4xl overflow-hidden shadow-xl group cursor-pointer">
+              <motion.div key={i} variants={fadeUp} whileHover={{ y: -10 }} className="relative aspect-[4/3] sm:h-80 rounded-4xl overflow-hidden shadow-xl group cursor-pointer">
                 <Image src={img.src} alt={img.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
                   <h4 className="text-white font-bold text-xl">{img.title}</h4>
