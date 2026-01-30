@@ -981,7 +981,7 @@ export default function Home() {
           <div className="pt-10 border-t border-white/5 text-xs">
             © 2026 Ragampeta Venkateshwara Swamy Temple. <br /> 
             <span className="text-primary font-bold mt-2 inline-block">ॐ नमो वेङ्कटेशाय नमः</span>
-            <p>@Presented by Peram Manasa D/O shivaiah</p>
+            <p>Presented by Peram Manasa, D/O Shivaiah</p>
           </div>
         </div>
       </footer>
