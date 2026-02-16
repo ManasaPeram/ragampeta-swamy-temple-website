@@ -248,10 +248,10 @@ export default function Home() {
 
       {/* Navbar */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-orange-100">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl font-bold">ॐ</div>
-            <span className="text-xl font-bold text-primary tracking-tighter">Sri Venkateshwara</span>
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl font-bold text-sm sm:text-base shrink-0">ॐ</div>
+            <span className="text-xs sm:text-sm md:text-xl font-bold text-primary tracking-tighter truncate">Sri Venkateshwara</span>
           </motion.div>
           
           <div className="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.2em] text-foreground/70">
@@ -260,14 +260,14 @@ export default function Home() {
             ))}
           </div>
 
-          <button onClick={toggleAudio} className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-all active:scale-90">
-            {isAudioPlaying ? <Volume2 size={20} className="text-primary" /> : <VolumeX size={20} className="text-primary" />}
+          <button onClick={toggleAudio} className="p-2 sm:p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-all active:scale-90 shrink-0">
+            {isAudioPlaying ? <Volume2 size={18} className="text-primary sm:w-5 sm:h-5" /> : <VolumeX size={18} className="text-primary sm:w-5 sm:h-5" />}
           </button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] md:h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[65vh] sm:h-[75vh] md:h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -284,31 +284,31 @@ export default function Home() {
             whileTap={{ cursor: 'grabbing' }}
             className="absolute inset-0 z-0 touch-pan-y"
           >
-            <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-[#fdf8f3] z-10" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/20 to-[#fdf8f3] z-10" />
             <Image src={SLIDER_IMAGES[currentSlide].src} alt="Temple" fill className="object-cover" priority />
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-20 text-center text-white px-4">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-            <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="text-primary text-5xl mb-6">ॐ</motion.div>
-            <h1 className="text-6xl md:text-9xl font-black mb-6 tracking-tighter drop-shadow-2xl">Venkateshwara</h1>
-            <p className="text-lg md:text-2xl max-w-3xl mx-auto font-light opacity-90 leading-relaxed tracking-wide">
+        <div className="relative z-20 text-center text-white px-4 w-full">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex flex-col items-center justify-center h-full">
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="text-primary text-4xl sm:text-5xl mb-3 sm:mb-6">ॐ</motion.div>
+            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-3 sm:mb-6 tracking-tighter drop-shadow-2xl leading-tight">Venkateshwara</h1>
+            <p className="text-sm sm:text-base md:text-xl lg:text-2xl max-w-2xl sm:max-w-3xl mx-auto font-light opacity-90 leading-relaxed tracking-wide px-2">
               Where devotion meets divinity. Welcome to the sacred abode of Ragampeta Swamy.
             </p>
-            <div className="mt-12 flex flex-wrap justify-center gap-4">
-              <a href="#donate" className="px-6 py-3 sm:px-10 sm:py-4 bg-primary text-white rounded-full font-bold shadow-2xl hover:bg-accent transition-all hover:-translate-y-1">Darshan & Seva</a>
-              <a href="#gallery" className="px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-lg border border-white/30 text-white rounded-full font-bold hover:bg-white/20 transition-all">Explore Gallery</a>
+            <div className="mt-6 sm:mt-10 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 w-full px-2">
+              <a href="#donate" className="px-5 py-2 sm:px-8 sm:py-3 md:px-10 md:py-4 text-sm sm:text-base bg-primary text-white rounded-full font-bold shadow-2xl hover:bg-accent transition-all hover:-translate-y-1">Darshan & Seva</a>
+              <a href="#gallery" className="px-5 py-2 sm:px-8 sm:py-3 md:px-10 md:py-4 text-sm sm:text-base bg-white/10 backdrop-blur-lg border border-white/30 text-white rounded-full font-bold hover:bg-white/20 transition-all">Explore Gallery</a>
             </div>
 
             {/* Slider Dots (mobile-friendly) */}
-            <div className="mt-4 flex items-center justify-center gap-3">
+            <div className="mt-3 sm:mt-4 flex items-center justify-center gap-2 sm:gap-3">
               {SLIDER_IMAGES.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
                   aria-label={`Go to slide ${idx + 1}`}
-                  className={`w-2 h-2 rounded-full transition-all ${idx === currentSlide ? 'bg-white' : 'bg-white/40'}`}
+                  className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all ${idx === currentSlide ? 'bg-white' : 'bg-white/40'}`}
                 />
               ))}
             </div> 
@@ -319,35 +319,35 @@ export default function Home() {
       {/* About Section */}
       <motion.section 
         id="about" 
-        className="py-32 px-6 max-w-7xl mx-auto relative bg-transparent"
+        className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto relative bg-transparent"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] -rotate-2 group-hover:rotate-0 transition-transform duration-500" />
-            <div className="relative h-72 sm:h-96 md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
+          <div className="relative group order-2 lg:order-1">
+            <div className="absolute -inset-4 bg-primary/10 rounded-2xl sm:rounded-3xl md:rounded-[3rem] -rotate-2 group-hover:rotate-0 transition-transform duration-500" />
+            <div className="relative h-56 sm:h-80 md:h-96 lg:h-600 rounded-2xl sm:rounded-3xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <Image src="/diety.jpg" alt="Deity" fill className="object-cover" />
             </div> 
           </div>
-          <div className="space-y-8">
-            <span className="text-primary font-bold tracking-[0.3em] uppercase text-sm">Divine Heritage</span>
-            <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight">A Sanctuary for the Soul</h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+          <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
+            <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs sm:text-sm">Divine Heritage</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">A Sanctuary for the Soul</h2>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
               For decades, Ragampeta, Venkateshwara Temple has stood as a beacon of spirituality, offering peace to thousands of devotees. Our traditions are rooted in ancient Vedic rituals.
             </p>
-            <div className="grid gap-6">
+            <div className="grid gap-4 sm:gap-6">
               {[
                 { title: "Sacred Aarti", time: "6:00 AM & 7:00 PM" },
                 { title: "Annadanam", time: "Every Saturday" }
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-6 p-6 bg-white rounded-3xl shadow-sm border border-orange-50/50">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">0{i+1}</div>
+                <div key={i} className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6 bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-orange-50/50">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm sm:text-base shrink-0">0{i+1}</div>
                   <div>
-                    <h4 className="font-bold text-lg">{item.title}</h4>
-                    <p className="text-muted-foreground">{item.time}</p>
+                    <h4 className="font-bold text-base sm:text-lg">{item.title}</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{item.time}</p>
                   </div>
                 </div>
               ))}
@@ -357,18 +357,18 @@ export default function Home() {
       </motion.section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-32 px-6 bg-primary/5">
+      <section id="gallery" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-primary/5">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" variants={fadeUp} className="text-center mb-20">
-            <h2 className="text-5xl font-bold mb-4">Temple Gallery</h2>
-            <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
+          <motion.div initial="hidden" whileInView="visible" variants={fadeUp} className="text-center mb-12 sm:mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Temple Gallery</h2>
+            <div className="w-16 sm:w-24 h-1 bg-primary mx-auto rounded-full" />
           </motion.div>
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" initial="hidden" whileInView="visible" variants={staggerContainer}>
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" initial="hidden" whileInView="visible" variants={staggerContainer}>
             {GALLERY_IMAGES.map((img, i) => (
-              <motion.div key={i} variants={fadeUp} whileHover={{ y: -10 }} className="relative aspect-[4/3] sm:h-80 rounded-4xl overflow-hidden shadow-xl group cursor-pointer">
+              <motion.div key={i} variants={fadeUp} whileHover={{ y: -10 }} className="relative rounded-2xl sm:rounded-4xl overflow-hidden shadow-xl group cursor-pointer" style={{ aspectRatio: '4/3' }}>
                 <Image src={img.src} alt={img.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                  <h4 className="text-white font-bold text-xl">{img.title}</h4>
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 sm:p-8">
+                  <h4 className="text-white font-bold text-sm sm:text-xl">{img.title}</h4>
                 </div>
               </motion.div>
             ))}
@@ -377,25 +377,25 @@ export default function Home() {
       </section>
 
       {/* Videos Section */}
-      <section id="videos" className="py-32 px-6 max-w-7xl mx-auto">
-        <motion.div initial="hidden" whileInView="visible" variants={fadeUp} className="text-center mb-20">
-          <h2 className="text-5xl font-bold mb-4">Spiritual Darshan</h2>
-          <p className="text-muted-foreground text-xl">Experience the divine vibrations through video</p>
+      <section id="videos" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto">
+        <motion.div initial="hidden" whileInView="visible" variants={fadeUp} className="text-center mb-12 sm:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Spiritual Darshan</h2>
+          <p className="text-muted-foreground text-base sm:text-lg md:text-xl">Experience the divine vibrations through video</p>
         </motion.div>
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
           {VIDEOS.map((vid, i) => (
-            <motion.div key={i} variants={fadeUp} onClick={() => setSelectedVideo(i)} className="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100 group cursor-pointer">
+            <motion.div key={i} variants={fadeUp} onClick={() => setSelectedVideo(i)} className="bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100 group cursor-pointer">
               <div className="aspect-video bg-muted relative">
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <button className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center pl-1 shadow-2xl">
-                    <Play fill="currentColor" size={24} />
+                  <button className="w-12 h-12 sm:w-16 sm:h-16 bg-primary text-white rounded-full flex items-center justify-center pl-1 shadow-2xl hover:bg-accent transition-all">
+                    <Play fill="currentColor" size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
                 <Image src={GALLERY_IMAGES[i % 6].src} alt="Video thumb" fill className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <div className="p-8">
-                <h3 className="font-bold text-2xl mb-2">{vid.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{vid.desc}</p>
+              <div className="p-6 sm:p-8">
+                <h3 className="font-bold text-lg sm:text-2xl mb-2">{vid.title}</h3>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{vid.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -403,58 +403,58 @@ export default function Home() {
       </section>
 
       {/* Donation Section */}
-      <section id="donate" className="py-32 px-6">
+      <section id="donate" className="py-20 sm:py-28 md:py-32 px-4 sm:px-6">
         <motion.div 
           initial="hidden" whileInView="visible" variants={fadeUp}
-          className="max-w-5xl mx-auto bg-[#2d1810] rounded-[4rem] shadow-3xl overflow-hidden flex flex-col lg:flex-row"
+          className="max-w-5xl mx-auto bg-[#2d1810] rounded-3xl sm:rounded-[4rem] shadow-3xl overflow-hidden flex flex-col lg:flex-row"
         >
-          <div className="lg:w-1/2 p-16 text-white flex flex-col justify-center bg-linear-to-br from-primary/20 to-transparent">
-            <Heart size={64} className="text-primary mb-8" />
-            <h2 className="text-5xl font-bold mb-6 tracking-tight">Dhaanam is Divine</h2>
-            <p className="text-xl opacity-70 leading-relaxed mb-8">
+          <div className="lg:w-1/2 p-8 sm:p-12 md:p-16 text-white flex flex-col justify-center bg-linear-to-br from-primary/20 to-transparent">
+            <Heart size={48} className="text-primary mb-4 sm:mb-8" />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight">Dhaanam is Divine</h2>
+            <p className="text-base sm:text-lg md:text-xl opacity-70 leading-relaxed mb-6 sm:mb-8">
               Every contribution helps us maintain the temple, feed the needy through Annadanam, and celebrate our grand festivals.
             </p>
-            <div className="flex items-center gap-4 text-primary font-bold">
-              <Sparkles /> <span>Tax Exempted under 80G</span>
+            <div className="flex items-center gap-4 text-primary font-bold text-sm sm:text-base">
+              <Sparkles size={20} /> <span>Tax Exempted under 80G</span>
             </div>
           </div>
 
-          <div className="lg:w-1/2 p-16 bg-white">
-            <h3 className="text-2xl font-bold mb-8">Select Seva Amount</h3>
-            <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="lg:w-1/2 p-8 sm:p-12 md:p-16 bg-white">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Select Seva Amount</h3>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
               {['501', '1116', '2500', '5001'].map(amt => (
                 <button 
                   key={amt}
                   onClick={() => setAmount(amt)}
-                  className={`py-4 rounded-2xl border-2 font-bold transition-all ${amount === amt ? 'border-primary bg-primary/5 text-primary scale-105' : 'border-muted hover:border-primary/30'}`}
+                  className={`py-3 sm:py-4 rounded-xl sm:rounded-2xl border-2 font-bold text-sm sm:text-base transition-all ${amount === amt ? 'border-primary bg-primary/5 text-primary scale-105' : 'border-muted hover:border-primary/30'}`}
                 >
                   ₹{amt}
                 </button>
               ))}
             </div>
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <input 
                 type="number" 
                 placeholder="Enter Custom Amount"
-                className="w-full p-5 rounded-2xl border-2 border-muted focus:border-primary outline-none transition-all text-lg"
+                className="w-full p-3 sm:p-5 rounded-xl sm:rounded-2xl border-2 border-muted focus:border-primary outline-none transition-all text-base sm:text-lg"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
               <button 
                 onClick={handleDonate}
-                className="w-full py-5 bg-primary text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-primary/40 hover:bg-accent transition-all active:scale-95"
+                className="w-full py-3 sm:py-5 bg-primary text-white rounded-xl sm:rounded-2xl font-bold text-base sm:text-xl shadow-xl hover:shadow-primary/40 hover:bg-accent transition-all active:scale-95"
               >
                 Donate via PhonePe / UPI
               </button>
               {showQR && (
-                <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60">
-                  <div className="bg-white p-8 rounded-3xl shadow-2xl flex flex-col items-center relative">
-                    <button onClick={() => setShowQR(false)} className="absolute top-4 right-4 text-2xl text-primary font-bold">×</button>
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+                  <div className="bg-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col items-center relative max-w-sm">
+                    <button onClick={() => setShowQR(false)} className="absolute top-3 right-3 sm:top-4 sm:right-4 text-2xl text-primary font-bold">×</button>
                     {amount && (
                       <>
-                        <h4 className="mb-4 text-lg font-bold text-primary">Scan to Donate</h4>
+                        <h4 className="mb-4 text-base sm:text-lg font-bold text-primary">Scan to Donate</h4>
                         <UPIQRCode upiUrl={upiUrl} />
-                        <div className="mt-4 text-center text-sm text-muted-foreground">
+                        <div className="mt-4 text-center text-xs sm:text-sm text-muted-foreground">
                           UPI ID: <span className="font-mono text-primary">{upiID}</span>
                         </div>
                       </>
@@ -468,21 +468,21 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+      <section id="contact" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 sm:gap-16 md:gap-20">
           <motion.div initial="hidden" whileInView="visible" variants={fadeUp}>
-            <h2 className="text-5xl font-bold mb-10 text-primary">Get in Touch</h2>
-            <div className="space-y-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 text-primary">Get in Touch</h2>
+            <div className="space-y-6 sm:space-y-10">
               {[
                 { icon: <MapPin />, label: "Location", val: "Ragampeta, Hyderabad, TS", href: "https://maps.google.com/?q=Ragampeta" },
                 { icon: <Phone />, label: "Phone", val: "+91 8340947374", href: "tel:+918340947374" },
                 { icon: <Mail />, label: "Email", val: "manasananna123@gmail.com", href: "mailto:manasananna123@gmail.com" }
               ].map((item, i) => (
-                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="flex gap-8 items-start hover:opacity-80 transition-opacity">
-                  <div className="p-5 bg-primary/10 rounded-2xl text-primary">{item.icon}</div>
+                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="flex gap-4 sm:gap-8 items-start hover:opacity-80 transition-opacity">
+                  <div className="p-3 sm:p-5 bg-primary/10 rounded-xl sm:rounded-2xl text-primary shrink-0">{item.icon}</div>
                   <div>
-                    <h4 className="font-bold text-xs text-muted-foreground uppercase tracking-widest mb-1">{item.label}</h4>
-                    <p className="text-xl font-medium">{item.val}</p>
+                    <h4 className="font-bold text-xs sm:text-sm text-muted-foreground uppercase tracking-widest mb-1">{item.label}</h4>
+                    <p className="text-base sm:text-xl font-medium">{item.val}</p>
                   </div>
                 </a>
               ))}
@@ -490,18 +490,18 @@ export default function Home() {
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" variants={fadeUp}>
-            <form onSubmit={handleDivineRequest} className="bg-white p-12 rounded-[3rem] shadow-2xl border border-orange-100 space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <input required placeholder="Name" className="w-full p-4 rounded-xl bg-muted/30 border-none outline-none" 
+            <form onSubmit={handleDivineRequest} className="bg-white p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-[3rem] shadow-2xl border border-orange-100 space-y-4 sm:space-y-6">
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                <input required placeholder="Name" className="w-full p-3 sm:p-4 rounded-lg sm:rounded-xl bg-muted/30 border-none outline-none text-sm sm:text-base" 
                   value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                <input required placeholder="Phone" className="w-full p-4 rounded-xl bg-muted/30 border-none outline-none" 
+                <input required placeholder="Phone" className="w-full p-3 sm:p-4 rounded-lg sm:rounded-xl bg-muted/30 border-none outline-none text-sm sm:text-base" 
                   value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
               </div>
-              <input required type="email" placeholder="Email" className="w-full p-4 rounded-xl bg-muted/30 border-none outline-none" 
+              <input required type="email" placeholder="Email" className="w-full p-3 sm:p-4 rounded-lg sm:rounded-xl bg-muted/30 border-none outline-none text-sm sm:text-base" 
                 value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
-              <textarea required placeholder="How can we help you?" rows={4} className="w-full p-4 rounded-xl bg-muted/30 border-none outline-none resize-none" 
+              <textarea required placeholder="How can we help you?" rows={4} className="w-full p-3 sm:p-4 rounded-lg sm:rounded-xl bg-muted/30 border-none outline-none resize-none text-sm sm:text-base" 
                 value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
-              <button type="submit" className="w-full py-5 bg-foreground text-white rounded-xl font-bold hover:bg-primary transition-all shadow-xl">
+              <button type="submit" className="w-full py-3 sm:py-5 bg-foreground text-white rounded-lg sm:rounded-xl font-bold hover:bg-primary transition-all shadow-xl text-sm sm:text-base">
                 Send Divine Request
               </button>
             </form>
@@ -512,7 +512,7 @@ export default function Home() {
       {/* Video Modal */}
       <AnimatePresence>
         {selectedVideo !== null && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 z-40 flex items-center justify-center p-4">
             <div className="relative w-full max-w-4xl">
               <button onClick={() => setSelectedVideo(null)} className="absolute -top-12 right-0 text-white text-3xl">✕</button>
               <video src={VIDEOS[selectedVideo].src} controls autoPlay className="w-full rounded-2xl shadow-2xl" />
@@ -522,9 +522,9 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Location Map Section */}
-      <section id="location-map" className="py-20 px-6 bg-white border-t border-orange-100 flex flex-col items-center">
-        <h2 className="text-3xl font-bold mb-8 text-primary">Temple Location</h2>
-        <div className="w-full max-w-4xl aspect-video rounded-3xl overflow-hidden shadow-2xl border border-orange-100">
+      <section id="location-map" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white border-t border-orange-100 flex flex-col items-center">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-primary">Temple Location</h2>
+        <div className="w-full max-w-4xl aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-orange-100">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.406073964479!2d78.4867!3d17.385044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb977b0b0b0b0b%3A0x0!2sRagampeta%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1706500000000!5m2!1sen!2sin"
             width="100%"
@@ -539,14 +539,14 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-20 bg-[#2d1810] text-white/50 text-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-primary text-4xl mb-6">ॐ</div>
-          <h2 className="text-white text-2xl font-bold mb-4">Ragampeta , Venkateshwara Swamy Temple</h2>
-          <div className="pt-10 border-t border-white/5 text-xs">
+      <footer className="py-12 sm:py-16 md:py-20 bg-[#2d1810] text-white/50 text-center px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-primary text-3xl sm:text-4xl mb-4 sm:mb-6">ॐ</div>
+          <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">Ragampeta , Venkateshwara Swamy Temple</h2>
+          <div className="pt-8 sm:pt-10 border-t border-white/5 text-xs sm:text-sm">
             © 2026 Ragampeta Venkateshwara Swamy Temple. <br /> 
             <span className="text-primary font-bold mt-2 inline-block">ॐ नमो वेङ्कटेशाय नमः</span>
-            <p>Presented by Peram Manasa, D/O Shivaiah</p>
+            <p className="text-xs sm:text-sm mt-2">Presented by Peram Manasa, D/O Shivaiah</p>
           </div>
         </div>
       </footer>
