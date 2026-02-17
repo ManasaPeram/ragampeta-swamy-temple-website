@@ -151,8 +151,9 @@ const Diya = ({ position }: { position: string }) => (
 // --- Constants ---
 const SLIDER_IMAGES = [
   { src: '/temple-hero .jpg', alt: 'Main Temple View' },
-  { src: '/first.png', alt: 'Inner Sanctum' },
-  { src: '/three.png', alt: 'Gopuram' }
+  { src: '/29.jpeg', alt: 'Inner Sanctum' },
+  { src: '/three.png', alt: 'Gopuram' },
+  { src: '/24.jpeg', alt: 'Festive Decorations' },
 ]
 
 const GALLERY_IMAGES = [
@@ -177,6 +178,9 @@ const VIDEOS = [
   { title: 'Kalyanotsavam', desc: 'The celestial wedding celebration.', src: '/festival-celebration.mp4', year: 2025, thumbnail: '/12.png' },
   { title: 'Temple Tour', desc: 'A spiritual walk through the premises.', src: '/1.mp4', year: 2026, thumbnail: '/21.jpeg' },
   { title: 'Evening Aarti', desc: 'Experience the magical evening rituals.', src: '/25.mp4', year: 2026, thumbnail: '/23.jpeg' },
+  { title: 'Annadanam', desc: 'Feeding the soul and the body.', src: '/2026_1.mp4', year: 2026, thumbnail: '/29.jpeg' },
+  { title: 'Festive Celebrations', desc: 'Highlights from our grand festivals.', src: '/2026_2.mp4', year: 2026, thumbnail: '/24.jpeg' },
+  { title: 'Vedic Chanting', desc: 'Immerse in the sacred chants.', src: '/2026_3.mp4', year: 2026, thumbnail: '/25.jpeg' },
 ]
 
 export default function Home() {
@@ -295,7 +299,7 @@ export default function Home() {
             whileTap={{ cursor: 'grabbing' }}
             className="absolute inset-0 z-0 touch-pan-y"
           >
-            <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/20 to-[#fdf8f3] z-10" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-transparent z-10" />
             <Image src={SLIDER_IMAGES[currentSlide].src} alt="Temple" fill className="object-cover" priority />
           </motion.div>
         </AnimatePresence>
@@ -303,13 +307,20 @@ export default function Home() {
         <div className="relative z-20 text-center text-white px-4 w-full">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex flex-col items-center justify-center h-full">
             <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="text-primary text-4xl sm:text-5xl mb-3 sm:mb-6">ॐ</motion.div>
-            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-3 sm:mb-6 tracking-tighter drop-shadow-2xl leading-tight">Venkateshwara</h1>
+            <motion.h1 
+              className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-3 sm:mb-6 tracking-tighter drop-shadow-2xl leading-tight overflow-hidden"
+              initial={{ width: 0 }}
+              animate={{ width: 'auto' }}
+              transition={{ duration: 2.5, ease: 'easeInOut' }}
+            >
+              Venkateshwara
+            </motion.h1>
             <p className="text-sm sm:text-base md:text-xl lg:text-2xl max-w-2xl sm:max-w-3xl mx-auto font-light opacity-90 leading-relaxed tracking-wide px-2">
               Where devotion meets divinity. Welcome to the sacred abode of Ragampeta Swamy.
             </p>
-            <div className="mt-6 sm:mt-10 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 w-full px-2">
-              <a href="#donate" className="px-5 py-2 sm:px-8 sm:py-3 md:px-10 md:py-4 text-sm sm:text-base bg-primary text-white rounded-full font-bold shadow-2xl hover:bg-accent transition-all hover:-translate-y-1">Darshan & Seva</a>
-              <a href="#gallery" className="px-5 py-2 sm:px-8 sm:py-3 md:px-10 md:py-4 text-sm sm:text-base bg-white/10 backdrop-blur-lg border border-white/30 text-white rounded-full font-bold hover:bg-white/20 transition-all">Explore Gallery</a>
+            <div className="mt-6 sm:mt-10 md:mt-12 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 w-auto mx-auto">
+              <a href="#donate" className="px-6 py-2 sm:px-7 sm:py-3 md:px-8 md:py-4 text-sm sm:text-base bg-primary text-white rounded-full font-bold shadow-2xl hover:bg-accent transition-all hover:-translate-y-1">Darshan & Seva</a>
+              <a href="#gallery" className="px-6 py-2 sm:px-7 sm:py-3 md:px-8 md:py-4 text-sm sm:text-base bg-white/10 backdrop-blur-lg border border-white/30 text-white rounded-full font-bold hover:bg-white/20 transition-all">Explore Gallery</a>
             </div>
 
             {/* Slider Dots (mobile-friendly) */}
@@ -534,7 +545,7 @@ export default function Home() {
             <div className="space-y-6 sm:space-y-10">
               {[
                 { icon: <MapPin />, label: "Location", val: "Ragampeta, Hyderabad, TS", href: "https://maps.google.com/?q=Ragampeta" },
-                { icon: <Phone />, label: "Phone", val: "+91 8340947374", href: "tel:+918340947374" },
+                { icon: <Phone />, label: "Phone", val: "+91 9949763789", href: "tel:+919949763789" },
                 { icon: <Mail />, label: "Email", val: "manasananna123@gmail.com", href: "mailto:manasananna123@gmail.com" }
               ].map((item, i) => (
                 <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="flex gap-4 sm:gap-8 items-start hover:opacity-80 transition-opacity">
