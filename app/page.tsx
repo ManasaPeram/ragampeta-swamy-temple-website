@@ -156,18 +156,27 @@ const SLIDER_IMAGES = [
 ]
 
 const GALLERY_IMAGES = [
-  { src: '/11.png', title: 'Deepotsavam' },
-  { src: '/12.png', title: 'Daily Puja' },
-  { src: '/13.png', title: 'Flower Decoration' },
-  { src: '/14.png', title: 'Temple Gate' },
-  { src: '/15.png', title: 'Abhishekam' },
-  { src: '/16.png', title: 'Dhwajasthambham' }
+  { src: '/11.png', title: 'Deepotsavam', year: 2025 },
+  { src: '/12.png', title: 'Daily Puja', year: 2025 },
+  { src: '/13.png', title: 'Flower Decoration', year: 2025 },
+  { src: '/14.png', title: 'Temple Gate', year: 2025 },
+  { src: '/15.png', title: 'Abhishekam', year: 2025 },
+  { src: '/16.png', title: 'Dhwajasthambham', year: 2025 },
+  { src: '/21.jpeg', title: 'Evening Aarti', year: 2026 },
+  { src: '/23.jpeg', title: 'Festive Lights', year: 2026 },
+  { src: '/22.jpeg', title: 'Prasadam Distribution', year: 2026 },
+  { src: '/24.jpeg', title: 'Devotees Offering', year: 2026 },
+  { src: '/25.jpeg', title: 'Vedic Chanting', year: 2026 },
+  { src: '/26.jpeg', title: 'Temple Courtyard', year: 2026 },
+  { src: '/27.jpeg', title: 'Annadanam', year: 2026 },
+
 ]
 
 const VIDEOS = [
-  { title: 'Morning Aarti', desc: 'Divine sounds of the early morning prayer.', src: '/temple-darshan.mp4' },
-  { title: 'Kalyanotsavam', desc: 'The celestial wedding celebration.', src: '/festival-celebration.mp4' },
-  { title: 'Temple Tour', desc: 'A spiritual walk through the premises.', src: '/puja-ceremony.mp4' }
+  { title: 'Morning Aarti', desc: 'Divine sounds of the early morning prayer.', src: '/temple-darshan.mp4', year: 2025, thumbnail: '/11.png' },
+  { title: 'Kalyanotsavam', desc: 'The celestial wedding celebration.', src: '/festival-celebration.mp4', year: 2025, thumbnail: '/12.png' },
+  { title: 'Temple Tour', desc: 'A spiritual walk through the premises.', src: '/1.mp4', year: 2026, thumbnail: '/21.jpeg' },
+  { title: 'Evening Aarti', desc: 'Experience the magical evening rituals.', src: '/25.mp4', year: 2026, thumbnail: '/23.jpeg' },
 ]
 
 export default function Home() {
@@ -177,6 +186,8 @@ export default function Home() {
   const [amount, setAmount] = useState('501')
   const [showQR, setShowQR] = useState(false)
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null)
+  const [selectedGalleryYear, setSelectedGalleryYear] = useState(2025)
+  const [selectedVideoYear, setSelectedVideoYear] = useState(2025)
   
   // Form States
   const [formData, setFormData] = useState({
@@ -328,8 +339,8 @@ export default function Home() {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
           <div className="relative group order-2 lg:order-1">
             <div className="absolute -inset-4 bg-primary/10 rounded-2xl sm:rounded-3xl md:rounded-[3rem] -rotate-2 group-hover:rotate-0 transition-transform duration-500" />
-            <div className="relative h-56 sm:h-80 md:h-96 lg:h-600 rounded-2xl sm:rounded-3xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-              <Image src="/diety.jpg" alt="Deity" fill className="object-cover" />
+            <div className="relative rounded-2xl sm:rounded-3xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-white w-full max-w-md mx-auto lg:mx-0">
+              <Image src="/diety.jpg" alt="Deity" width={400} height={500} className="w-full h-auto" />
             </div> 
           </div>
           <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
@@ -363,10 +374,34 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Temple Gallery</h2>
             <div className="w-16 sm:w-24 h-1 bg-primary mx-auto rounded-full" />
           </motion.div>
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" initial="hidden" whileInView="visible" variants={staggerContainer}>
-            {GALLERY_IMAGES.map((img, i) => (
-              <motion.div key={i} variants={fadeUp} whileHover={{ y: -10 }} className="relative rounded-2xl sm:rounded-4xl overflow-hidden shadow-xl group cursor-pointer" style={{ aspectRatio: '4/3' }}>
-                <Image src={img.src} alt={img.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+
+          {/* Year Selection Tabs */}
+          <div className="flex justify-center gap-3 sm:gap-6 mb-12 sm:mb-16 flex-wrap">
+            {[2025, 2026].map(year => (
+              <button
+                key={year}
+                onClick={() => setSelectedGalleryYear(year)}
+                className={`px-6 sm:px-10 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-base transition-all ${
+                  selectedGalleryYear === year
+                    ? 'bg-primary text-white shadow-lg'
+                    : 'bg-white border-2 border-primary text-primary hover:bg-primary/5'
+                }`}
+              >
+                {year}
+              </button>
+            ))}
+          </div>
+
+          <motion.div 
+            key={selectedGalleryYear}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" 
+            initial="hidden" 
+            animate="visible" 
+            variants={staggerContainer}
+          >
+            {GALLERY_IMAGES.filter(img => img.year === selectedGalleryYear).map((img, i) => (
+              <motion.div key={img.src} variants={fadeUp} whileHover={{ y: -10 }} className="relative rounded-2xl sm:rounded-4xl overflow-hidden shadow-xl group cursor-pointer" style={{ aspectRatio: '1/1' }}>
+                <Image src={img.src} alt={img.title} fill className="object-cover" priority />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 sm:p-8">
                   <h4 className="text-white font-bold text-sm sm:text-xl">{img.title}</h4>
                 </div>
@@ -382,16 +417,40 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Spiritual Darshan</h2>
           <p className="text-muted-foreground text-base sm:text-lg md:text-xl">Experience the divine vibrations through video</p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
-          {VIDEOS.map((vid, i) => (
-            <motion.div key={i} variants={fadeUp} onClick={() => setSelectedVideo(i)} className="bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100 group cursor-pointer">
+
+        {/* Year Selection Tabs */}
+        <div className="flex justify-center gap-3 sm:gap-6 mb-12 sm:mb-16 flex-wrap">
+          {[2025, 2026].map(year => (
+            <button
+              key={year}
+              onClick={() => setSelectedVideoYear(year)}
+              className={`px-6 sm:px-10 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-base transition-all ${
+                selectedVideoYear === year
+                  ? 'bg-primary text-white shadow-lg'
+                  : 'bg-white border-2 border-primary text-primary hover:bg-primary/5'
+              }`}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+
+        <motion.div
+          key={selectedVideoYear}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          {VIDEOS.filter(vid => vid.year === selectedVideoYear).map((vid, i) => (
+            <motion.div key={vid.src} variants={fadeUp} onClick={() => setSelectedVideo(VIDEOS.indexOf(vid))} className="bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100 group cursor-pointer">
               <div className="aspect-video bg-muted relative">
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <button className="w-12 h-12 sm:w-16 sm:h-16 bg-primary text-white rounded-full flex items-center justify-center pl-1 shadow-2xl hover:bg-accent transition-all">
                     <Play fill="currentColor" size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
-                <Image src={GALLERY_IMAGES[i % 6].src} alt="Video thumb" fill className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" />
+                <Image src={vid.thumbnail} alt="Video thumb" fill className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6 sm:p-8">
                 <h3 className="font-bold text-lg sm:text-2xl mb-2">{vid.title}</h3>
@@ -399,7 +458,7 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Donation Section */}
@@ -512,11 +571,36 @@ export default function Home() {
       {/* Video Modal */}
       <AnimatePresence>
         {selectedVideo !== null && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 z-40 flex items-center justify-center p-4">
-            <div className="relative w-full max-w-4xl">
-              <button onClick={() => setSelectedVideo(null)} className="absolute -top-12 right-0 text-white text-3xl">✕</button>
-              <video src={VIDEOS[selectedVideo].src} controls autoPlay className="w-full rounded-2xl shadow-2xl" />
-            </div>
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4"
+            onClick={() => setSelectedVideo(null)}
+          >
+            <motion.div 
+              className="relative w-full h-full max-w-5xl max-h-[90vh] flex flex-col"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setSelectedVideo(null)} 
+                className="absolute -top-8 right-0 sm:top-2 sm:right-2 text-white text-3xl sm:text-4xl font-bold hover:text-orange-400 transition-colors z-10 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
+                aria-label="Close video"
+              >
+                ✕
+              </button>
+              <video 
+                src={VIDEOS[selectedVideo].src} 
+                controls 
+                autoPlay 
+                className="w-full h-full rounded-lg sm:rounded-2xl shadow-2xl bg-black object-contain"
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
